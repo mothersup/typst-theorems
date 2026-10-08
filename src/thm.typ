@@ -579,6 +579,7 @@
   }
 
   show math.equation: eq => {
+    [thm, #eq.block #linebreak()]
     show metadata.where(value: "thm-qedhere"): tag(thm-qed-show)
     show metadata: data => {
       if type(data.value) == dictionary and data.value.keys().contains("eq-tag") {
@@ -599,17 +600,22 @@
       }
     }
 
+    // eq
+
     if eq.numbering == none {
       math.equation(
-        block: eq.block,
-        numbering: x => metadata("thm-equation-numbering"),
-        number-align: eq.number-align,
-        supplement: eq.supplement,
+        // block: eq.block,
+        block: false,
+        // block: true,
+        // numbering: x => metadata("thm-equation-numbering"),
+        // number-align: eq.number-align,
+        // supplement: eq.supplement,
         eq.body
       )
     } else {
       eq
     }
+
   }
 
   show metadata.where(value: "thm-qedhere"): {
